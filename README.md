@@ -20,7 +20,9 @@ import seaborn as sns
 dataset = pd.read_csv('50_Startups.csv')
 ```
 
-## Understanding the data
+## Exploratory Data Analysis
+
+### Understanding the data
 ```python
 print(dataset.head())  # top 5 rows of the data set'
 print(dataset.info()) # general information about the dataset. Fill missing values.
@@ -30,9 +32,7 @@ print(dataset.describe()) # summary statistics
 ![](https://github.com/avixd/dudaniavinash.github.io/blob/main/images/LR_head.png)
 ![](https://github.com/avixd/dudaniavinash.github.io/blob/main/images/LR_info.png)
 
-
-
-## Exploratory Data Analysis
+### Grouping profit by state
 ```python
 Profitperstate = dataset.groupby('State')['Profit'].mean().sort_values(ascending=False)
 print(Profitperstate.head())
@@ -46,38 +46,43 @@ y = dataset.iloc[:, 4] #all values from rows in the last column
 #Convert the column into categorical columns
 ```
 
-### Plots
+### HeatmapPlot to understand correlations
+
 ```python
 plt.figure(figsize=( 8,8))
 sns.heatmap(X.corr(),annot=True, cmap="coolwarm")
 states=pd.get_dummies(X['State'],drop_first=True)
 ```
 
-```python
 ### Drop the state column
+
+```python
 X=X.drop('State',axis=1)
 ```
 
-```python
 ### concatenating the dummy variables
+```python
 X=pd.concat([X,states],axis=1)
 ```
 
-```python
+
 ## Splitting the dataset into the Training set and Test set
+```python
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 ```
 
-```python
+
 ## Fitting Multiple Linear Regression to the Training set
+
+```python
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 ```
+## Predicting the Test set results i.e. Predicting Profit based on Administration spend, Marketing spend, R&D spend and State.
 
 ```python
-## Predicting the Test set results i.e. Predicting Profit based on Administration spend, Marketing spend, R&D spend and State.
 y_pred = regressor.predict(X_test)
 ```
 
