@@ -1,8 +1,6 @@
-# Problem Statement
+# [Problem Statement] (https://github.com/avixd/MultipleLinearRegressioninPython/blob/main/SolutionExplaination.pdf)
 Multiple linear regression to predict Profit based on Administration spend, Marketing spends, R&D spend and State. Explain the trend and correlation between dependent and independent variables.		
 
-
-# [Solution](https://github.com/avixd/MultipleLinearRegressioninPython/blob/main/SolutionExplaination.pdf)
 
 ## Importing the libraries
 
